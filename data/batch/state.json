@@ -1,0 +1,16 @@
+{
+  "locations": {
+    "New York": {
+      "last_observed_at": "2024-05-01T12:00:00"
+    },
+    "San Francisco": {
+      "last_observed_at": "2024-05-01T12:00:00"
+    },
+    "London": {
+      "last_observed_at": "2024-05-01T12:00:00"
+    },
+    "Tokyo": {
+      "last_observed_at": "2024-05-01T12:00:00"
+    }
+  }
+}

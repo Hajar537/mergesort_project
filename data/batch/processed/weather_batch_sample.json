@@ -1,0 +1,70 @@
+{
+  "observations": [
+    {
+      "location": "New York",
+      "observed_at": "2024-05-01T12:00:00",
+      "temperature_c": 18,
+      "feels_like_c": 19,
+      "humidity": 55,
+      "wind_kph": 12,
+      "weather_descriptions": [
+        "Partly cloudy"
+      ]
+    },
+    {
+      "location": "San Francisco",
+      "observed_at": "2024-05-01T12:00:00",
+      "temperature_c": 16,
+      "feels_like_c": 16,
+      "humidity": 72,
+      "wind_kph": 9,
+      "weather_descriptions": [
+        "Fog"
+      ]
+    },
+    {
+      "location": "London",
+      "observed_at": "2024-05-01T12:00:00",
+      "temperature_c": 15,
+      "feels_like_c": 14,
+      "humidity": 68,
+      "wind_kph": 11,
+      "weather_descriptions": [
+        "Light rain"
+      ]
+    },
+    {
+      "location": "Tokyo",
+      "observed_at": "2024-05-01T12:00:00",
+      "temperature_c": 22,
+      "feels_like_c": 23,
+      "humidity": 60,
+      "wind_kph": 10,
+      "weather_descriptions": [
+        "Sunny"
+      ]
+    }
+  ],
+  "metrics": {
+    "New York": {
+      "count": 1,
+      "avg_temp_c": 18.0,
+      "avg_humidity": 55.0
+    },
+    "San Francisco": {
+      "count": 1,
+      "avg_temp_c": 16.0,
+      "avg_humidity": 72.0
+    },
+    "London": {
+      "count": 1,
+      "avg_temp_c": 15.0,
+      "avg_humidity": 68.0
+    },
+    "Tokyo": {
+      "count": 1,
+      "avg_temp_c": 22.0,
+      "avg_humidity": 60.0
+    }
+  }
+}
