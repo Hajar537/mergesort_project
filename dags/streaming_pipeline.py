@@ -19,7 +19,7 @@ STATE_FILE = DATA_DIR / "state.json"
 PROCESSED_DIR = DATA_DIR / "processed"
 
 WEATHERSTACK_ENDPOINT = "http://api.weatherstack.com/current"
-WEATHERSTACK_DEFAULT_KEY = "97b2240b1c8d6bd7260f340df5349956"
+WEATHERSTACK_API_KEY = "97b2240b1c8d6bd7260f340df5349956"
 WEATHER_LOCATIONS = [
     "New York",
     "San Francisco",
@@ -27,8 +27,8 @@ WEATHER_LOCATIONS = [
     "Tokyo",
 ]
 
-DEFAULT_ARGS = {
-    "owner": "data-eng",
+ARGS = {
+    "owner": "Hajar",
     "depends_on_past": False,
 }
 
@@ -78,7 +78,7 @@ def extract_weather(**context: Any) -> Dict[str, Any]:
     not duplicate data when the upstream reading is unchanged.
     """
 
-    api_key = os.environ.get("WEATHERSTACK_API_KEY", WEATHERSTACK_DEFAULT_KEY)
+    api_key = os.environ.get("WEATHERSTACK_API_KEY", WEATHERSTACK_API_KEY)
 
     state = load_state()
     location_state: Dict[str, Dict[str, Any]] = state.get("locations", {})
