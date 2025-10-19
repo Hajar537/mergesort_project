@@ -38,8 +38,7 @@ Both DAGs are self-contained Python files that can be dropped into an Airflow
 * **Schedule**: every two hours (`0 */2 * * *`).
 * **Source data**: Weatherstack current-conditions API snapshots for the
   configured cities (`New York`, `San Francisco`, `London`, `Tokyo`). The DAG
-  uses the provided demo key (`97b2240b1c8d6bd7260f340df5349956`) unless you set
-  `WEATHERSTACK_API_KEY` in the environment. Each run pulls the latest payload
+  uses the a personal key provided by the weatherstack API. Each run pulls the latest payload
   per city, skips observations whose `localtime` matches the stored checkpoint,
   and appends any new JSON objects to `data/batch/raw/weather_history.jsonl` for
   lineage.
@@ -90,17 +89,16 @@ predictable cadence. Example use cases include:
      `data/stream/state.json` mirrors the post-run checkpoint for the sample
      artifacts so you can inspect the full lifecycle.
 
-Provide the API key via your Airflow deployment (environment configuration,
-Secrets Backend, or another secure method). If you cannot supply the key in a
-particular environment, the DAGs will transparently use the demo key baked into
-the repository. When running completely offline, rely on the committed sample
-artifacts mentioned above or modify the streaming DAG to point back at the
-bundled `scripts/stream_source.py` generator. Both DAGs depend on the
-`requests` library, which ships with most Airflow installations; install it
-manually if your environment omits it.
-
 ### Real-world fit
+Batch pipelines excel when upstream systems deliver sizable extracts on a
+predictable cadence. Example use cases include:
 
+* Nightly fleet telemetry rollups derived from an external monitoring API.
+* Scheduled compliance checks that must snapshot external KPIs at precise
+  intervals for auditing.
+* Periodic enrichment jobs that join third-party reference data (like weather)
+  onto internal fact tables on a slower cadence.
+  
 Streaming-style orchestration shines when latency requirements are measured in
 seconds or minutes. Potential applications include:
 
@@ -138,33 +136,3 @@ airflow dags trigger streaming_pipeline
 
 The processed outputs appear in the corresponding `data/*/processed/`
 subdirectories.
-
-## Publishing this project to your GitHub repository
-
-To copy the work from this environment into your own GitHub account:
-
-1. Add your repository as a remote inside this workspace:
-   ```bash
-   git remote add origin https://github.com/<your-username>/<your-repo>.git
-   ```
-   Replace the placeholders with your actual GitHub namespace. If `origin` is already used, pick another remote name (for example, `github`).
-2. Push the current branch so the commits appear on GitHub:
-   ```bash
-   git push -u origin <branch-name>
-   ```
-   The `-u` flag sets the upstream so future pushes only require `git push`.
-3. On your local machine, clone or pull the repository normally:
-   ```bash
-   git clone https://github.com/<your-username>/<your-repo>.git
-   ```
-   If you already cloned it, just run `git pull` to bring in the latest commits.
-4. **Optional offline export**: If you must move the repo without pushing to a
-   remote (for example, to download it as a single file), create a Git bundle
-   and copy it to your machine:
-   ```bash
-   git bundle create repo.bundle --all
-   ```
-   After downloading `repo.bundle`, unpack it locally with
-   `git clone repo.bundle my-project`.
-
-These steps ensure the Airflow DAGs, data artifacts, and documentation in this workspace are published to your GitHub project and available for download locally.
