@@ -90,15 +90,7 @@ predictable cadence. Example use cases include:
      artifacts so you can inspect the full lifecycle.
 
 ### Real-world fit
-Batch pipelines excel when upstream systems deliver sizable extracts on a
-predictable cadence. Example use cases include:
 
-* Nightly fleet telemetry rollups derived from an external monitoring API.
-* Scheduled compliance checks that must snapshot external KPIs at precise
-  intervals for auditing.
-* Periodic enrichment jobs that join third-party reference data (like weather)
-  onto internal fact tables on a slower cadence.
-  
 Streaming-style orchestration shines when latency requirements are measured in
 seconds or minutes. Potential applications include:
 
